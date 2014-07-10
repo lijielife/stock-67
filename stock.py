@@ -59,6 +59,9 @@ class Stock(object):
         return content
 
     def print_highest_price(self,stock_records,company,company_index):
+        """
+        Display highest share price for given 'company' for specified period within csv
+        """
         print "\nHighest share price for '%s':" % company
         print '{:>10} {:>10} {:>15}'.format('Year','Month','StockPrice')
         for row in stock_records:
@@ -84,6 +87,7 @@ if __name__ == '__main__':
         s = Stock(args.input_file)
 	s.read_stock_data()
         companies = s.csv_data[0][2:]
+        # Sort and display highest share price for each company
         for company in companies:
             csv_sorted = s.sort_stocks_by_company(company, True)
             s.print_highest_price(csv_sorted[1:2],company,s.csv_data[0].index(company))
